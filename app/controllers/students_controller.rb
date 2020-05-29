@@ -20,6 +20,11 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def search 
+    @students = Student.where('name LIKE ?', "%#{params[:query]}%")
+    render 'index'
+  end
+
   def index
     @students = Student.all
   end
